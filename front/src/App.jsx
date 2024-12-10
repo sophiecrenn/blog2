@@ -16,26 +16,18 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
-      <body>
-        <BrowserRouter>
-        <header>
+    <BrowserRouter>
       <Header />
-      </header>
-          <Routes>
-            <Route path="/" element={<BlogList />} />
-            <Route path="/create" element={<BlogCreation />} />
-            <Route path="/blog/:id" element={<BlogDetail />} />
-            <Route path="/blog/edit/:id" element={<BlogUpdate />}/>
-            <Route path="/account" element={<CreateAccount />}/>
-            <Route path="/login" element={<Connexion />} />
-          </Routes>
-        </BrowserRouter>
-      </body>
-      <footer>
+      <Routes>
+        <Route path="/" element={<BlogList />} />
+        <Route path="/create" element={<BlogCreation />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/blog/edit/:id" element={<BlogUpdate />} />
+        <Route path="/account" element={<CreateAccount />} />
+        <Route path="/login" element={<Connexion />} />
+      </Routes>
       <Footer />
-      </footer>
-    </div>
+    </BrowserRouter>
   );
 }
 

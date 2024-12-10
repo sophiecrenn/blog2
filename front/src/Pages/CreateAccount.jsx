@@ -10,24 +10,21 @@ const CreateAccount = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-            const response = await fetch("http://localhost:3001/api/account", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            });
+        const response = await fetch("http://localhost:3001/api/auth/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
 
-        const data = await response.json();
-        setEmail(data.email);
-        setPassword(data.password);
         navigate('/login');
-        setMessage('Account created'); 
+        setMessage('Account created');
     };
     return (
         <div>
             <h1>Create Account</h1>
-            {message && <p>{message}</p>}   
+            {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
@@ -51,6 +48,6 @@ const CreateAccount = () => {
             </form>
         </div>
     );
-};  
+};
 
 export default CreateAccount;

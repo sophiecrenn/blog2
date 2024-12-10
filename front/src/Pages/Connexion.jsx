@@ -12,6 +12,7 @@ const AdminConnexion = () => {
         try {
             const response = await fetch("http://localhost:3001/api/auth/login", {
                 method: "POST",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -32,7 +33,7 @@ const AdminConnexion = () => {
     return (
         <div>
             <h1>Connexion</h1>
-            {message && <p>{message}</p>}   
+            {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <label>
                     Email:
