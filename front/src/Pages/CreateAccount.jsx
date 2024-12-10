@@ -1,0 +1,56 @@
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const CreateAccount = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+            const response = await fetch("http://localhost:3001/api/account", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+        const data = await response.json();
+        setEmail(data.email);
+        setPassword(data.password);
+        navigate('/login');
+        setMessage('Account created'); 
+    };
+    return (
+        <div>
+            <h1>Create Account</h1>
+            {message && <p>{message}</p>}   
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                <br />
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+    );
+};  
+
+export default CreateAccount;
