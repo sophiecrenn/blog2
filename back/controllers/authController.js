@@ -38,8 +38,18 @@ const getUsers = async (req, res) => {
     res.json(await User.find());
 }
 
+const getLoggedUser = async (req, res) => {
+    res.json(req.user);
+}
+
+const logout = async (req, res) => {
+    res.clearCookie('token').json({ message: 'Déconnexion réussi youpi' });
+}
+
 module.exports = {
     register,
     login,
-    getUsers
+    getUsers,
+    getLoggedUser,
+    logout
 };

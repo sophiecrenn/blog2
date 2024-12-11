@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Hooks/AuthContext';
+import { useContext } from 'react';
 import axios from 'axios';
 
 function DashboardAdmin() {
@@ -7,9 +9,11 @@ function DashboardAdmin() {
   const [articles, setArticles] = useState([]);
   const navigate = useNavigate();
 
+  const { user, logout } = useContext(AuthContext);
+
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get('http://localhost:3001/api/auth');
+      const response = await axios.get('http://localhost:3001/api/auth', { withCredentials: true });
       setUsers(response.data);
     };
 
@@ -39,12 +43,6 @@ function DashboardAdmin() {
       console.error(error);
     }
   };
-
-  
-const logout = () => {
-  localStorage.removeItem('token');
-  navigate('/');
-}
 
   return (
     <div>

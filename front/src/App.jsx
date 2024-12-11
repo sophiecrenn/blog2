@@ -15,26 +15,30 @@ import Footer from "./components/Footer";
 import DashboardAdmin from './Pages/DashboardAdmin.jsx';
 import DashboardUser from './Pages/DashboardUser.jsx';
 import { AuthProvider } from "./Hooks/AuthProvider.jsx";
-
+import ProtectedRoute from "./Hooks/ProtectedRoute.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<BlogList />} />
-        <Route path="/blog" element={<BlogList />} />
-        <AuthProvider>
-        <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-        <Route path="/dashboardUser" element={<DashboardUser />} />
-        <Route path="/create" element={<BlogCreation />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
-        <Route path="/blog/edit/:id" element={<BlogUpdate />} />
-        </AuthProvider>
-        <Route path="/account" element={<CreateAccount />} />
-        <Route path="/login" element={<Connexion />} />
-      </Routes>
-      <Footer />
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<BlogList />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/dashboardUser" element={<DashboardUser />} />
+          </Route>
+          <Route element={<ProtectedRoute adminOnly={true} />}>
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/create" element={<BlogCreation />} />
+            <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+            <Route path="/blog/edit/:id" element={<BlogUpdate />} />
+          </Route>
+          <Route path="/account" element={<CreateAccount />} />
+          <Route path="/login" element={<Connexion />} />
+        </Routes>
+        <Footer />
+      </AuthProvider>
     </BrowserRouter>
   );
 }
