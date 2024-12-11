@@ -22,6 +22,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<BlogList />} />
+        <Route path="/blog" element={<BlogList />} />
         <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
         <Route path="/dashboardUser" element={<DashboardUser />} />
         <Route path="/create" element={<BlogCreation />} />

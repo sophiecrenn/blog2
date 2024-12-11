@@ -1,17 +1,6 @@
 import { useState, useEffect } from 'react';
-/*************  ✨ Codeium Command 🌟  *************/
 import { Link } from 'react-router-dom';
 
-const handleUpdateArticle = async (id) => {
-  try {
-    const response = await axios.get(`http://localhost:3001/api/blogs/${id}`);
-    const article = response.data;
-    navigate(`/blog/edit/${article._id}`);
-  } catch (error) {
-    console.error(error);
-  }
-};
-/******  36e585bc-d2fb-4283-a06b-14731a5eb7ec  *******/
 import axios from 'axios';
 
 function DashboardAdmin() {
@@ -20,7 +9,7 @@ function DashboardAdmin() {
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get('http://localhost:3001/api/users');
+      const response = await axios.get('http://localhost:3001/api/auth');
       setUsers(response.data);
     };
 
@@ -32,6 +21,16 @@ function DashboardAdmin() {
     getUsers();
     getArticles();
   }, []);
+
+  // const handleUpdateArticle = async (id) => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:3001/api/blogs/${id}`);
+  //     const article = response.data;
+  //     navigate(`/blog/edit/${article._id}`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const handleDeleteUser = async (id) => {
     try {
@@ -56,14 +55,14 @@ function DashboardAdmin() {
       <h1>Dashboard Admin</h1>
       <p>Welcome to your dashboard!</p>
       <li><Link to="/create">Create Article</Link></li>
-      <li><Link to="/blog/edit/:id">Update Article</Link></li>
-      <li><Link to="/blog/:id">List of articles</Link></li>
+      {/* <li><Link to="/blog/edit/:id">Update Article</Link></li> */}
+      <li><Link to="/blog">List of articles</Link></li>
       <ul>
         {articles.map((article) => (
           <li key={article._id}>
             {article.title}
             {article.content}
-            <button onClick={() => handleUpdateArticle(article._id)}>Mettre à jour</button>
+            <Link to={`/blog/edit/${article._id}`}>Mettre à jour</Link>
             <button onClick={() => handleDeleteArticle(article._id)}>Delete</button>
           </li>
         ))}
