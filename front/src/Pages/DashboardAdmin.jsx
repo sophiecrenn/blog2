@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../Hooks/AuthContext';
 import { useContext } from 'react';
 import axios from 'axios';
@@ -7,9 +7,8 @@ import axios from 'axios';
 function DashboardAdmin() {
   const [users, setUsers] = useState([]);
   const [articles, setArticles] = useState([]);
-  const navigate = useNavigate();
 
-  const { user, logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
 
   useEffect(() => {
     const getUsers = async () => {

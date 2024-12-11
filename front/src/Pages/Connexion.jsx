@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Hooks/AuthContext";
 
 const AdminConnexion = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
+    const { setUser } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,12 +23,14 @@ const AdminConnexion = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                if (data.admin) {
-                    navigate('/dashboardAdmin');
-                } else {
-                    navigate('/dashboardUser'); 
+                const loggedUser = await response.json();
+                // Le setUser viens du context qui va permettre d'acceder aux infos de l'utilisateur partout dans le projet
+                setUser(loggedUser);
+                if (loggedUser.admin) {
+                    return navigate('/dashboardAdmin');
                 }
+
+                navigate('/dashboardUser');
             } else {
                 setMessage("Login failed");
             }

@@ -6,15 +6,13 @@ import { AuthContext } from '../Hooks/AuthContext';
 const Header = () => {
   const { user } = useContext(AuthContext);
 
-  if (user === undefined) return <div>Chargement....</div>;
-
   return (
     <nav>
       <ul>
         <li>
           <Link to="/">Accueil</Link>
         </li>
-        {!user ?
+        {!user || user === undefined ?
           <>
             <li>
               <Link to="/account">Création d&apos;un compte</Link>

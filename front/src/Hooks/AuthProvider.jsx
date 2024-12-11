@@ -29,7 +29,8 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await fetch("http://localhost:3001/api/auth/logout", { credentials: "include" });
+            const response = await fetch("http://localhost:3001/api/auth/logout", { credentials: "include" });
+            console.log(response);
             setUser(undefined);
             navigate('/');
         } catch (error) {

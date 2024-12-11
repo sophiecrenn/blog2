@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Hooks/AuthContext';
 
 const DashboardUser = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+
+    const { logout } = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,10 +21,6 @@ const DashboardUser = () => {
         setMessage('');
     };
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        navigate('/');
-      }
 
     return (
         <div>
