@@ -20,7 +20,12 @@ const AdminConnexion = () => {
             });
 
             if (response.ok) {
-                navigate('/dashboard');
+                const data = await response.json();
+                if (data.admin) {
+                    navigate('/dashboardAdmin');
+                } else {
+                    navigate('/dashboardUser'); 
+                }
             } else {
                 setMessage("Login failed");
             }
