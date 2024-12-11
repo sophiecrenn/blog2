@@ -28,7 +28,7 @@ const BlogList = () => {
 
     return (
         <div>
-            <h1>Listing</h1>
+            <h1>Liste des articles</h1>
             {message && <p>{message}</p>}
             {articles.map((article, index) => (
                 <div key={index}>

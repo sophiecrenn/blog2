@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardUser = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,6 +18,11 @@ const DashboardUser = () => {
         setEmail('');
         setMessage('');
     };
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+      }
 
     return (
         <div>
@@ -52,6 +59,7 @@ const DashboardUser = () => {
                 </div>
                 <button type="submit">Envoyer</button>
             </form>
+            <div>Log out: <button onClick={logout}>Logout</button></div>
         </div>
     );
 };

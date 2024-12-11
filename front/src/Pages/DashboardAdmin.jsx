@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function DashboardAdmin() {
   const [users, setUsers] = useState([]);
   const [articles, setArticles] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUsers = async () => {
@@ -21,16 +21,6 @@ function DashboardAdmin() {
     getUsers();
     getArticles();
   }, []);
-
-  // const handleUpdateArticle = async (id) => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:3001/api/blogs/${id}`);
-  //     const article = response.data;
-  //     navigate(`/blog/edit/${article._id}`);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleDeleteUser = async (id) => {
     try {
@@ -50,10 +40,16 @@ function DashboardAdmin() {
     }
   };
 
+  
+const logout = () => {
+  localStorage.removeItem('token');
+  navigate('/');
+}
+
   return (
     <div>
       <h1>Dashboard Admin</h1>
-      <p>Welcome to your dashboard!</p>
+      <p>Bonjour et bienvenu sur votre dashboard admin</p>
       <li><Link to="/create">Create Article</Link></li>
       {/* <li><Link to="/blog/edit/:id">Update Article</Link></li> */}
       <li><Link to="/blog">List of articles</Link></li>
@@ -76,6 +72,7 @@ function DashboardAdmin() {
           </li>
         ))}
       </ul>
+      <div>Log out: <button onClick={logout}>Logout</button></div>
     </div>
   );
 }

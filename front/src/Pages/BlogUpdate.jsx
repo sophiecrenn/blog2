@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const BlogUpdate = () => {
     const { id } = useParams();
@@ -10,31 +9,77 @@ const BlogUpdate = () => {
 
     useEffect(() => {
         getArticle();
-    }, [])
+    }, []);
 
     const getArticle = async () => {
-        const response = await fetch(`http://localhost:3001/api/blogs/${id}`);
-        const data = await response.json();
-        setArticle(data);
+        try {
+            const response = await fetch(`http://localhost:3001/api/blogs/${id}`);
+            if (!response.ok) {
+                throw new Error('Article non trouvé.');
+            }
+            const data = await response.json();
+            setArticle(data);
+        } catch (err) {
+            setMessage(err.message);
+        }
     }
 
-    // Faire une fonction pour update, ensuite rediriger vers la page d'accueil ou  la page de l'article
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(article),
+            });
+
+            if (!response.ok) {
+                throw new Error('Erreur lors de la mise à jour de l\'article.');
+            }
+
+            setMessage('Article mis à jour avec succès.');
+            setTimeout(() => navigate('/'), 2000);
+        } catch (err) {
+            setMessage(err.message);
+        }
+    }
 
     return (
         <div>
-            <h1>Listing</h1>
+            <h1>Mise à jour de l&apos;article {id}</h1>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Titre
+                    <input type="text" value={article.title} onChange={(event) => setArticle({ ...article, title: event.target.value })} />
+                </label>
+                <br />
+                <label>
+                    Résumé 
+                    <textarea value={article.summary} onChange={(event) => setArticle({ ...article, summary: event.target.value })} />
+                </label>
+                <br />
+                <label>
+                    Auteur
+                    <input type="text" value={article.author} onChange={(event) => setArticle({ ...article, author: event.target.value })} />
+                </label>
+                <br />
+                <label>
+                    Contenu
+                    <textarea value={article.content} onChange={(event) => setArticle({ ...article, content: event.target.value })} />
+                </label>
+                <br />
+                <label>
+                    Catégorie
+                    <input type="text" value={article.category} onChange={(event) => setArticle({ ...article, category: event.target.value })} />
+                </label>
+                <br />
+                <button type="submit">Mettre à jour</button>
+            </form>
             {message && <p>{message}</p>}
-            {/* Faire un formulaire pour mettre à jour l'article */}
-            {/* Reprendre le formulaire de creation et mettre dans les values les valeurs actuelles */}
-            <div>
-                <h2>{article.title}</h2>
-                <p>{article.summary}</p>
-                <p>{article.content}</p>
-                <p>{article.author}</p>
-                <p>{article.category}</p>
-            </div>
         </div>
     );
-};
+}
 
 export default BlogUpdate;
