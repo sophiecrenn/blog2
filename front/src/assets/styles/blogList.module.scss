@@ -1,0 +1,44 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+
+
+.title{
+    color : $first-title-color;
+    text-align: center;
+    margin:10px;
+    padding: 10px;
+    border: 1px solid blue
+}
+
+.container{ 
+@include container;
+
+.image{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.secondTitle{
+    color : $first-title-color;
+    text-align: center;
+    margin:10px;
+}
+
+.secondContainer{
+    color : $first-title-color;
+    text-align: center;
+    margin:10px;
+}
+
+.learn{
+    margin-top:5px;
+    color : $first-title-color;
+    text-align: center;
+    text-decoration: none;
+}
+}
+
+
+

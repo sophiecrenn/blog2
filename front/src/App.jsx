@@ -16,12 +16,15 @@ import DashboardAdmin from './Pages/DashboardAdmin.jsx';
 import DashboardUser from './Pages/DashboardUser.jsx';
 import { AuthProvider } from "./Hooks/AuthProvider.jsx";
 import ProtectedRoute from "./Hooks/ProtectedRoute.jsx";
+import styles from './assets/styles/body.module.scss';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+      <body className={styles.body}>
         <Header />
+        <main className={styles.main}>
         <Routes>
           <Route path="/" element={<BlogList />} />
           <Route element={<ProtectedRoute />}>
@@ -37,7 +40,9 @@ function App() {
           <Route path="/account" element={<CreateAccount />} />
           <Route path="/login" element={<Connexion />} />
         </Routes>
+        </main>
         <Footer />
+        </body>
       </AuthProvider>
     </BrowserRouter>
   );

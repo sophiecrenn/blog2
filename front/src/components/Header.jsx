@@ -2,12 +2,15 @@
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
+import styles from '../assets/styles/header.module.scss'
+import Logo from '../assets/Blog.svg';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
+            <img src={Logo} alt="logo" className={styles.logo}/>
       <ul>
         <li>
           <Link to="/">Accueil</Link>

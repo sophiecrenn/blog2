@@ -29,9 +29,6 @@ const [message, setMessage] = useState('');
           Titre : <input type="text" name="title" value={creation.title} required onChange={(e) => setCreation({ ...creation, title: e.target.value })} />
         </label>
         <br />
-        <label>
-          Résumé : <input type="text" name="resume" value={creation.resume} required onChange={(e) => setCreation({ ...creation, resume: e.target.value })} />
-        </label>
         <br />
         <label>
           Contenu : <textarea name="content" value={creation.content} required onChange={(e) => setCreation({ ...creation, content: e.target.value })}></textarea>
@@ -41,6 +38,9 @@ const [message, setMessage] = useState('');
           Auteur : <input type="text" name="author" value={creation.autor} required onChange={(e) => setCreation({ ...creation, author: e.target.value })} />
         </label>
         <br />
+        <label>
+          Image : <input type="file" name="image" value={creation.image} required onChange={(e) => setCreation({ ...creation, image: e.target.value })} />
+        </label>
         <label>
           Catégorie :
         <select name="category" value={creation.category} required onChange={(e) => setCreation({ ...creation, category: e.target.value })} >

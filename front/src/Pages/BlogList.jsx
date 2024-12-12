@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { useNavigate} from 'react-router-dom';
+import styles from '../assets/styles/blogList.module.scss';
+
 
 const BlogList = () => {
     const [articles, setArticles]=useState([]);
@@ -18,28 +20,18 @@ const BlogList = () => {
         setArticles(data);
     }
 
-    const deleteArticle = async (id) => {
-        await fetch(`http://localhost:3001/api/blogs/${id}`, {
-            method: 'DELETE'
-        });
-        setMessage('Article supprimé !');
-        getArticles();
-    }
-
     return (
         <div>
-            <h1>Liste des articles</h1>
+
+            <h1 className={styles.title}>Articles à la une</h1>
             {message && <p>{message}</p>}
             {articles.map((article, index) => (
-                <div key={index}>
-                    <h2>{article.title}</h2>
-                    <p>{article.summary}</p>
-                    <p>{article.content}</p>
-                    <p>{article.author}</p>
-                    <p>{article.category}</p>
-                    <a href={`/blog/${article._id}`}>En savoir plus</a>
-                    <button onClick={() => deleteArticle(article._id)}>Supprimer</button>
-                    <button onClick={() => navigate(`/blog/edit/${article._id}`)}>Modifier l&apos;article</button> {/* Lien vers la page de modification de l'article, à reporter dans la page app côté front */}    
+                <div className = {styles.container} key={index}>
+                    <img className={styles.image} src={article.image} alt="image" />
+                    <h2 className={styles.secondTitle}>{article.title}</h2>
+                    <p className={styles.secondContainer}>{article.content}</p>
+                    <p className={styles.secondContainer}>{article.category}</p>
+                    <a className={styles.learn} href={`/blog/${article._id}`}>Lire l'article</a>  
                 </div>
             ))}
         </div>
