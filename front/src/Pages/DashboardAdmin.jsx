@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Hooks/AuthContext';
 import { useContext } from 'react';
 import axios from 'axios';
-import { API_URL } from '../config/env'
+import { API_URL } from '../config/env';
+import styles from '../assets/styles/dashboardAdmin.module.scss';
 
 function DashboardAdmin() {
-  const [users, setUsers] = useState([]);
-  const [articles, setArticles] = useState([]);
-
-  const { logout } = useContext(AuthContext);
+  const [articles, setArticles] = useState([]); // État pour les articles
+  const [users, setUsers] = useState([]); // État pour les utilisateurs
+  const { logout } = useContext(AuthContext); // Hook pour le logout
 
   useEffect(() => {
     const getUsers = async () => {
@@ -26,53 +26,57 @@ function DashboardAdmin() {
     getArticles();
   }, []);
 
-  const handleDeleteUser = async (id) => {
+  const handleDeleteArticle = async (id) => {
     try {
-      await axios.delete(`${API_URL}/api/users/${id}`);
-      setUsers(users.filter((user) => user._id !== id));
+      await axios.delete(`${API_URL}/api/blogs/${id}`); // Suppression de l'article
+      setArticles(articles.filter((article) => article._id !== id)); // Met à jour la liste des articles
     } catch (error) {
-      console.error(error);
+      console.error(error); // Gestion des erreurs
     }
   };
 
-  const handleDeleteArticle = async (id) => {
+  const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`${API_URL}/api/blogs/${id}`);
-      setArticles(articles.filter((article) => article._id !== id));
+      await axios.delete(`${API_URL}/api/users/${id}`); // Suppression de l'utilisateur
+      setUsers(users.filter((user) => user._id !== id)); // Met à jour la liste des utilisateurs
     } catch (error) {
-      console.error(error);
+      console.error(error); // Gestion des erreurs
     }
   };
 
   return (
-    <div>
-      <h1>Dashboard Admin</h1>
-      <p>Bonjour et bienvenu sur votre dashboard admin</p>
-      <li><Link to="/create">Create Article</Link></li>
-      {/* <li><Link to="/blog/edit/:id">Update Article</Link></li> */}
-      <li><Link to="/blog">List of articles</Link></li>
+    <div className={styles.dashboardAdmin}>
+      <h1 className={styles.dashboardTitles}>Bienvenue sur votre dashboard d'administrateur</h1>
+
+      <h2 className={styles.dashboardSecondTitles}>Articles édités</h2>
+      <p className={styles.create}><Link to="/create">Créer un article</Link></p>
       <ul>
         {articles.map((article) => (
           <li key={article._id}>
-            {article.title}
-            {article.content}
-            <Link to={`/blog/edit/${article._id}`}>Mettre à jour</Link>
-            <button onClick={() => handleDeleteArticle(article._id)}>Delete</button>
+            <strong>{article.title}</strong>
+            <Link to={`/blog/edit/${article._id}`}>Modifier</Link> 
+            <button onClick={() => handleDeleteArticle(article._id)} >Supprimer</button> {/* Bouton pour supprimer */}
           </li>
         ))}
       </ul>
-      <h2>Users</h2>
+
+      <h2 className={styles.dashboardSecondTitles}>Utilisateurs</h2>
       <ul>
         {users.map((user) => (
-          <li key={user._id}>
-            {user.email}
-            <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+          <li key={user._id} className={styles.listItem}>
+            {user.email} {/* Montrer uniquement l'email */}
+            <button onClick={() => handleDeleteUser(user._id)}>Supprimer</button> {/* Bouton pour supprimer */}
           </li>
         ))}
       </ul>
-      <div>Log out: <button onClick={logout}>Logout</button></div>
+
+      <div className={styles.dashboardSecondTitles}>
+        Log out : <button onClick={logout}>Déconnexion</button>
+      </div>
     </div>
   );
 }
 
 export default DashboardAdmin;
+
+

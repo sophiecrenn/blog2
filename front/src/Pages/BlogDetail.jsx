@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_URL } from '../config/env'
+import { API_URL } from '../config/env';
+import styles from '../assets/styles/BlogDetail.module.scss';
+
 const BlogDetail = () => {
     const [article, setArticle] = useState(null); // État pour l'article
     const [error, setError] = useState(''); // État pour gérer les erreurs
@@ -18,31 +20,17 @@ const BlogDetail = () => {
                 throw new Error('Article non trouvé.');
             }
             const data = await response.json();
-            console.log(data)
             setArticle(data); // Stocker l'article dans l'état
             setError(''); // Réinitialiser le message d'erreur
         } catch (err) {
             setError(err.message); // Gérer l'erreur
             setArticle(null); // Réinitialiser l'article en cas d'erreur
         }
-    }
+    };
 
-    const deleteArticle = async () => {
-        try {
-            const response = await fetch(`${API_URL}/api/blogs/${id}`, {
-                method: 'DELETE'
-            });
-
-            if (!response.ok) {
-                throw new Error('Erreur lors de la suppression de l\'article.');
-            }
-
-            alert('Article supprimé avec succès.'); // Alerte de succès
-            navigate('/'); // Naviguer vers la page d'accueil ou la liste des articles
-        } catch (err) {
-            setError(err.message); // Gérer l'erreur
-        }
-    }
+    const goBack = () => {
+        navigate(-1); // Naviguer à la page précédente
+    };
 
     if (error) {
         return <p style={{ color: 'red' }}>{error}</p>; // Afficher les erreurs
@@ -53,16 +41,13 @@ const BlogDetail = () => {
     }
 
     return (
-        <div>
-            <h1>Détails de l&apos;article</h1>
-            <h2>{article.titre}</h2>
-            <p><strong>Titre :</strong> {article.title}</p>
-            <p><strong>Contenu :</strong> {article.content}</p>
-            <p><strong>Catégorie :</strong> {article.category}</p>
+        <div className={styles.BlogDetail}>
+            <h1 className={styles.title}>Détails de l&apos;article</h1>
+            <h2 className={styles.secondTitle}>{article.title}</h2>
+            <p className={styles.secondContainer}>{article.content}</p>
+            <button className={styles.backButton} onClick={goBack}>Précédent</button>
         </div>
     );
 };
 
 export default BlogDetail;
-
-//            <button onClick={deleteArticle}>Supprimer l&apos;article</button>

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Hooks/AuthContext";
-import { API_URL } from '../config/env'
+import { API_URL } from '../config/env';
+import styles from "../assets/styles/connexion.module.scss";
 
 const AdminConnexion = () => {
     const [email, setEmail] = useState("");
@@ -18,14 +19,14 @@ const AdminConnexion = () => {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password }),
             });
 
             if (response.ok) {
                 const loggedUser = await response.json();
-                // Le setUser viens du context qui va permettre d'acceder aux infos de l'utilisateur partout dans le projet
+                // Le setUser vient du context qui va permettre d'accéder aux infos de l'utilisateur partout dans le projet
                 setUser(loggedUser);
                 if (loggedUser.admin) {
                     return navigate('/dashboardAdmin');
@@ -33,16 +34,20 @@ const AdminConnexion = () => {
 
                 navigate('/dashboardUser');
             } else {
-                setMessage("Login failed");
+                setMessage("Échec de la connexion");
             }
         } catch (error) {
             console.error(error);
-            setMessage("An error occurred");
+            setMessage("Une erreur est survenue");
         }
     };
 
+    const redirectToSignup = () => {
+        navigate('/account'); // Redirige vers la page de création de compte
+    };
+
     return (
-        <div>
+        <div className={styles.connexion}>
             <h1>Connexion</h1>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
@@ -66,8 +71,11 @@ const AdminConnexion = () => {
                 <br />
                 <button type="submit">Connexion</button>
             </form>
+            <p>Vous n'avez pas de compte ?</p>
+            <button onClick={redirectToSignup}>Créer un compte</button>
         </div>
     );
 };
 
 export default AdminConnexion;
+
