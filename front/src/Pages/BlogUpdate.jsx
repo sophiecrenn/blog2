@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { API_URL } from '../config/env';
 const BlogUpdate = () => {
     const { id } = useParams();
     const [article, setArticle] = useState({});
@@ -13,7 +13,7 @@ const BlogUpdate = () => {
 
     const getArticle = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/blogs/${id}`);
+            const response = await fetch(`${API_URL}/api/blogs/${id}`);
             if (!response.ok) {
                 throw new Error('Article non trouvé.');
             }
@@ -27,7 +27,7 @@ const BlogUpdate = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+            const response = await fetch(`${API_URL}/api/blogs/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const BlogUpdate = () => {
                 </label>
                 <br />
                 <label>
-                    Résumé 
+                    Résumé
                     <textarea value={article.summary} onChange={(event) => setArticle({ ...article, summary: event.target.value })} />
                 </label>
                 <br />

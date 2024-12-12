@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
+import { API_URL } from '../config/env'
 
 const DashboardUser = () => {
     const [name, setName] = useState('');

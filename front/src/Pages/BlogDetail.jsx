@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import { API_URL } from '../config/env'
 const BlogDetail = () => {
     const [article, setArticle] = useState(null); // État pour l'article
     const [error, setError] = useState(''); // État pour gérer les erreurs
@@ -13,7 +13,7 @@ const BlogDetail = () => {
 
     const getArticle = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/blogs/${id}`); // Utiliser l'ID dans l'URL
+            const response = await fetch(`${API_URL}/api/blogs/${id}`); // Utiliser l'ID dans l'URL
             if (!response.ok) {
                 throw new Error('Article non trouvé.');
             }
@@ -29,7 +29,7 @@ const BlogDetail = () => {
 
     const deleteArticle = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/api/blogs/${id}`, {
+            const response = await fetch(`${API_URL}/api/blogs/${id}`, {
                 method: 'DELETE'
             });
 

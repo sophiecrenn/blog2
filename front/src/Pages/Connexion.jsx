@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Hooks/AuthContext";
+import { API_URL } from '../config/env'
 
 const AdminConnexion = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const AdminConnexion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:3001/api/auth/login", {
+            const response = await fetch(API_URL + "/api/auth/login", {
                 method: "POST",
                 credentials: "include",
                 headers: {

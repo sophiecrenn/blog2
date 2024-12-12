@@ -22,26 +22,26 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-      <body className={styles.body}>
-        <Header />
-        <main className={styles.main}>
-        <Routes>
-          <Route path="/" element={<BlogList />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/blog" element={<BlogList />} />
-            <Route path="/dashboardUser" element={<DashboardUser />} />
-          </Route>
-          <Route element={<ProtectedRoute adminOnly={true} />}>
-            <Route path="/blog/:id" element={<BlogDetail />} />
-            <Route path="/create" element={<BlogCreation />} />
-            <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
-            <Route path="/blog/edit/:id" element={<BlogUpdate />} />
-          </Route>
-          <Route path="/account" element={<CreateAccount />} />
-          <Route path="/login" element={<Connexion />} />
-        </Routes>
-        </main>
-        <Footer />
+        <body className={styles.body}>
+          <Header />
+          <main className={styles.main}>
+            <Routes>
+              <Route path="/" element={<BlogList />} />
+              <Route path="/blog/:id" element={<BlogDetail />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/blog" element={<BlogList />} />
+                <Route path="/dashboardUser" element={<DashboardUser />} />
+              </Route>
+              <Route element={<ProtectedRoute adminOnly={true} />}>
+                <Route path="/create" element={<BlogCreation />} />
+                <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+                <Route path="/blog/edit/:id" element={<BlogUpdate />} />
+              </Route>
+              <Route path="/account" element={<CreateAccount />} />
+              <Route path="/login" element={<Connexion />} />
+            </Routes>
+          </main>
+          <Footer />
         </body>
       </AuthProvider>
     </BrowserRouter>

@@ -1,9 +1,7 @@
 const Article = require("../models/Article");
 
 const store = async (req, res) => {
-    console.log(req.body);
-
-    const article = await Article.create(req.body);
+    const article = await Article.create({ ...req.body, image: req.file.path.replace('public', '') });
 
     res.json(article);
 }
@@ -23,7 +21,7 @@ const getOne = async (req, res) => {
 
 const updateOne = async (req, res) => {
     const { id } = req.params;
-    const { title, summary, author, content, category, image} = req.body;
+    const { title, summary, author, content, category, image } = req.body;
     const articleUpdated = await Article.findByIdAndUpdate(id, req.body);
 
     res.json(articleUpdated);

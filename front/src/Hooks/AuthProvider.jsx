@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom'
-
+import { API_URL } from '../config/env'
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
     const loadData = async () => {
         try {
-            const response = await fetch("http://localhost:3001/api/auth/getLoggedUser", {
+            const response = await fetch(API_URL + "/api/auth/getLoggedUser", {
                 credentials: 'include'
             });
             const data = await response.json();
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            const response = await fetch("http://localhost:3001/api/auth/logout", { credentials: "include" });
+            const response = await fetch(API_URL + "/api/auth/logout", { credentials: "include" });
             console.log(response);
             setUser(undefined);
             navigate('/');

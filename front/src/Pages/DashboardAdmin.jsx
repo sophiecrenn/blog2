@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../Hooks/AuthContext';
 import { useContext } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config/env'
 
 function DashboardAdmin() {
   const [users, setUsers] = useState([]);
@@ -12,12 +13,12 @@ function DashboardAdmin() {
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await axios.get('http://localhost:3001/api/auth', { withCredentials: true });
+      const response = await axios.get(API_URL + '/api/auth', { withCredentials: true });
       setUsers(response.data);
     };
 
     const getArticles = async () => {
-      const response = await axios.get('http://localhost:3001/api/blogs');
+      const response = await axios.get(API_URL + '/api/blogs');
       setArticles(response.data);
     };
 
@@ -27,7 +28,7 @@ function DashboardAdmin() {
 
   const handleDeleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/users/${id}`);
+      await axios.delete(`${API_URL}/api/users/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error(error);
@@ -36,7 +37,7 @@ function DashboardAdmin() {
 
   const handleDeleteArticle = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/blogs/${id}`);
+      await axios.delete(`${API_URL}/api/blogs/${id}`);
       setArticles(articles.filter((article) => article._id !== id));
     } catch (error) {
       console.error(error);

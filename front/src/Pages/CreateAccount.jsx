@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from "../config/env";
 const CreateAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -10,7 +10,7 @@ const CreateAccount = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:3001/api/auth/register", {
+        const response = await fetch(API_URL + "/api/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
