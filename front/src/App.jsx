@@ -22,7 +22,6 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <body className={styles.body}>
           <Header />
           <main className={styles.main}>
             <Routes>
@@ -42,7 +41,6 @@ function App() {
             </Routes>
           </main>
           <Footer />
-        </body>
       </AuthProvider>
     </BrowserRouter>
   );

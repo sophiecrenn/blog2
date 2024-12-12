@@ -1,2 +1,14 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('ttf'),
+         url('../fonts/Roboto/Roboto-Bold.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/*fonts*/
+$font-family-primary: 'Roboto', sans-serif;
+
+/*colors*/
 $background-image:linear-gradient(90deg,  #efcdff, #640088);
 $first-title-color: white;

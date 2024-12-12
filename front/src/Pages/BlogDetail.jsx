@@ -58,11 +58,11 @@ const BlogDetail = () => {
             <h2>{article.titre}</h2>
             <p><strong>Titre :</strong> {article.title}</p>
             <p><strong>Contenu :</strong> {article.content}</p>
-            <p><strong>Auteur :</strong> {article.author}</p>
             <p><strong>Catégorie :</strong> {article.category}</p>
-            <button onClick={deleteArticle}>Supprimer l&apos;article</button>
         </div>
     );
 };
 
 export default BlogDetail;
+
+//            <button onClick={deleteArticle}>Supprimer l&apos;article</button>

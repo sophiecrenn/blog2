@@ -1,8 +1,10 @@
+@import '_variables.scss';
+
 *{
     box-sizing: border-box;
 }
 
-.body{
+body{
     margin: 0;
     padding: 0;
     background-color: black;
@@ -11,6 +13,7 @@
     align-items: center;
     justify-content: center;
     min-height:100vh;
+    font-family: $font-family-primary;
 
     .main{
         flex: 1; 
