@@ -16,14 +16,13 @@ import DashboardAdmin from './Pages/DashboardAdmin.jsx';
 import DashboardUser from './Pages/DashboardUser.jsx';
 import { AuthProvider } from "./Hooks/AuthProvider.jsx";
 import ProtectedRoute from "./Hooks/ProtectedRoute.jsx";
-import styles from './assets/styles/body.module.scss';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
           <Header />
-          <main className={styles.main}>
+          <main>
             <Routes>
               <Route path="/" element={<BlogList />} />
               <Route path="/blog/:id" element={<BlogDetail />} />

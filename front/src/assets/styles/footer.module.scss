@@ -1,12 +1,12 @@
 @import '_variables.scss';
 
-footer{
+footer {
     background-image: $background-image;
-    height:100%;
-    width:100%;
-    border-radius:5px;
+    height: 100px; /* Ajustez selon vos besoins */
+    width: 100%;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:50px;
+    margin-top: auto; /* Pousse le footer en bas */
 }

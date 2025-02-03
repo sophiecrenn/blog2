@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config/env";
+import styles from "../assets/styles/connexion.module.scss";
 const CreateAccount = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ const CreateAccount = () => {
         setMessage('Account created');
     };
     return (
-        <div>
+        <div className={styles.connexion}>
             <h1>Create Account</h1>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>

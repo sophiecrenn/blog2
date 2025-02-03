@@ -1,0 +1,99 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// Styles de base pour les appareils mobiles
+.dashboardUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px; // Espacement pour les petits écrans
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px; // Limite la largeur du formulaire
+        padding: 20px;
+        background-color: $white-color;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 5px 5px;
+            background-color: $primary-color;
+            color: $secondary-color;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: $secondary-color;
+            }
+
+            &:disabled {
+                background-color: $button-disabled-color;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+// Media Query pour les tablettes (écrans de 768px et plus)
+@media (min-width: 768px) {
+    .dashboardUser {
+        padding: 20px; // Plus d'espace autour sur tablette
+
+        form {
+            width: 80%; // Augmenter la largeur du formulaire
+
+            button {
+                font-size: 18px; // Agrandir le texte du bouton
+                padding: 12px 18px; // Agrandir le bouton
+            }
+        }
+    }
+}
+
+// Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
+@media (min-width: 1024px) {
+    .dashboardUser {
+        padding: 40px; // Ajouter un padding plus large sur desktop
+
+        form {
+            width: 60%; // Formulaire plus large
+
+            button {
+                font-size: 20px; // Agrandir le texte pour grand écran
+                padding: 15px 20px; // Agrandir les boutons
+            }
+        }
+    }
+}
+
+

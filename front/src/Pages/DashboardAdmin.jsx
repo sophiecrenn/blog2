@@ -46,10 +46,9 @@ function DashboardAdmin() {
 
   return (
     <div className={styles.dashboardAdmin}>
-      <h1 className={styles.dashboardTitles}>Bienvenue sur votre dashboard d'administrateur</h1>
-
-      <h2 className={styles.dashboardSecondTitles}>Articles édités</h2>
+      <h1 className={styles.dashboardTitles}>Bienvenue sur votre dashboard administrateur</h1>
       <p className={styles.create}><Link to="/create">Créer un article</Link></p>
+      <h2 className={styles.dashboardSecondTitles}>Articles édités</h2>
       <ul>
         {articles.map((article) => (
           <li key={article._id}>
@@ -70,8 +69,8 @@ function DashboardAdmin() {
         ))}
       </ul>
 
-      <div className={styles.dashboardSecondTitles}>
-        Log out : <button onClick={logout}>Déconnexion</button>
+      <div className={styles.dashboardLogOut}>
+       <button onClick={logout}>Déconnexion</button>
       </div>
     </div>
   );

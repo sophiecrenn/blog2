@@ -1,52 +1,133 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+// Styles par défaut pour les appareils mobiles
 .dashboardAdmin {
     display: flex;
     flex-direction: column;
-    align-items: left;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    list-style: none;
+    align-items: center;
+    color: $secondary-color;
     text-align: left;
+    padding: 10px;
 
-    .dashboardTitles{
+    .dashboardTitles,
+    .dashboardSecondTitles {
         margin: 10px;
         padding: 10px;
-        border: 5px solid violet;
+        text-align: center;
     }
 
-    .dashboardSecondTitles{
-        margin: 10px;
-        padding: 10px;
-        border: 5px solid violet;
+    .dashboardTitles {
+        border: 5px solid $forth-color;
+        font-size: 20px;
     }
 
-   .create a{
-        color: white;
-        border: none;
+    .dashboardSecondTitles {
+        border: 5px solid $third-color;
+        background-color: $third-color;
+        font-size: 18px;
+    }
+
+    .create a {
+        color: $white-color;
+        border: 5px solid $third-color;
         padding: 10px;
         margin: 10px;
         cursor: pointer;
-        list-style: none;
         text-decoration: none;
-        border: 5px solid violet;
-    }
-    
-
-    ul{
-        list-style: none;
-
-    li a{
-        text-decoration: none;
-        color: violet;
-        list-style: none;
+        font-size: 15px;
     }
 
-    button{
-        color:darkmagenta;
+    ul {
+        list-style: none;
+        padding: 0;
+        font-size: 15px;
+
+        li a {
+            text-decoration: none;
+            color: $forth-color;
+            margin: 10px;
+        }
+    }
+
+    button {
+        color: $white-color;
         cursor: pointer;
-        background-color: violet;
+        background-color: $third-color;
+        border-radius: 5px;
+        margin: 10px;
+    }
+
+    .dashboardLogOut {
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        color: $third-color;
+
+        button {
+            color: $third-color;
+            cursor: pointer;
+            background-color: $forth-color;
+            border-radius: 5px;
+        }
     }
 }
 
+// Media Query pour les tablettes (écrans de 768px et plus)
+@media (min-width: 768px) {
+    .dashboardAdmin {
+        padding: 20px;
+
+        .dashboardTitles,
+        .dashboardSecondTitles {
+            margin: 15px;
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+
+        .create a {
+            padding: 15px;
+            margin: 15px;
+            font-size: 1rem;
+        }
+
+        ul li a {
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1rem;
+        }
+    }
+}
+
+// Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
+@media (min-width: 1024px) {
+    .dashboardAdmin {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+
+        .dashboardTitles,
+        .dashboardSecondTitles {
+            font-size: 1.5rem;
+            padding: 20px;
+        }
+
+        .create a {
+            padding: 20px;
+            font-size: 1.2rem;
+        }
+
+        ul li a {
+            font-size: 1.2rem;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+    }
 }
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
 import { API_URL } from '../config/env'
+import styles from '../assets/styles/dashboardUser.module.scss';
 
 const DashboardUser = () => {
     const [name, setName] = useState('');
@@ -24,7 +25,7 @@ const DashboardUser = () => {
 
 
     return (
-        <div>
+        <div className={styles.dashboardUser}>
             <h2>Contactez l&apos;Admin</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -58,7 +59,7 @@ const DashboardUser = () => {
                 </div>
                 <button type="submit">Envoyer</button>
             </form>
-            <div>Log out: <button onClick={logout}>Logout</button></div>
+            <div><button onClick={logout}>Logout</button></div>
         </div>
     );
 };

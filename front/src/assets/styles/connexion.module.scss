@@ -1,9 +1,100 @@
-.connexion{
+@import "variables.scss";
+@import "mixins.scss";
+
+// Styles généraux pour les appareils mobiles
+.connexion {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: auto;
-    color:white
+    color: $primary-color;
+    padding: 20px;
 
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    label {
+        padding: 5px;
+        font-size: 1rem;
+    }
+
+    input {
+        margin: 10px 10px 0 10px;
+        padding: 8px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    button {
+        padding: 10px;
+        background-color: $primary-color;
+        color: $white-color;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
 }
+
+// Media Query pour les tablettes (écrans de 768px et plus)
+@media (min-width: 768px) {
+    .connexion {
+        padding: 40px;
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        form {
+            width: 80%;
+        }
+
+        input {
+            margin: 15px 10px;
+            width: 80%;
+            max-width: none;
+        }
+
+        button {
+            width: 80%;
+        }
+    }
+}
+
+// Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
+@media (min-width: 1024px) {
+    .connexion {
+        padding: 60px;
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        form {
+            width: 50%;
+        }
+
+        input {
+            margin: 20px 10px;
+            width: 70%;
+        }
+
+        button {
+            width: 70%;
+        }
+    }
+}
+

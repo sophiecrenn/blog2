@@ -2,42 +2,142 @@
 @import "mixins.scss";
 
 
-.title{
-    color : $first-title-color;
-    text-align: center;
-    margin:10px;
-    padding: 10px;
-    border: 1px solid blue
+// Styles généraux pour les appareils mobiles
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    iframe {
+        margin: 10px;
+        padding: 10px;
+    }
 }
 
-.container{ 
-@include container;
-
-.image{
-    width: 100%;
-    height: auto;
+.title {
+    color: $primary-color;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    background-image: $background-image-title;
     border-radius: 5px;
 }
 
-.secondTitle{
-    color : $first-title-color;
-    text-align: center;
-    margin:10px;
+.container {
+    padding: 10px;
+
+    .image {
+        width: 100%;
+        height: auto;
+    }
 }
 
-.secondContainer{
-    color : $first-title-color;
+.secondTitle {
+    color: $first-title-color;
     text-align: center;
-    margin:10px;
+    margin: 10px;
 }
 
-.learn{
-    margin-top:5px;
-    color : $first-title-color;
+.secondContainer {
+    color: $secondary-color;
+    text-align: left;
+    margin: 10px;
+}
+
+.learn {
+    margin-top: 5px;
+    color: $first-title-color;
     text-align: center;
     text-decoration: none;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+
+    button {
+        color: white;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        list-style: none;
+        text-decoration: none;
+        background-color: $primary-color;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    }
 }
+
+// Media Query pour les tablettes (écrans de 768px et plus)
+@media (min-width: 768px) {
+    .container {
+        .image {
+            width: 50%;
+        }
+    }
+
+    .title {
+        padding: 15px;
+        font-size: 1.5rem;
+    }
+
+    .secondTitle {
+        font-size: 1.3rem;
+    }
+
+    .secondContainer {
+        font-size: 1.1rem;
+    }
+
+    .pagination {
+        button {
+            padding: 12px;
+        }
+    }
+}
+
+// Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
+@media (min-width: 1024px) {
+    .container {
+        .image {
+            width: 30%;
+        }
+    }
+
+    .title {
+        padding: 20px;
+        font-size: 2rem;
+    }
+
+    .secondTitle {
+        font-size: 1.5rem;
+    }
+
+    .secondContainer {
+        font-size: 1.2rem;
+    }
+
+    .pagination {
+        button {
+            padding: 15px;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+
+
 
 
 

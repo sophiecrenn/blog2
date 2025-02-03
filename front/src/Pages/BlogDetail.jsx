@@ -45,7 +45,6 @@ const BlogDetail = () => {
             <h1 className={styles.title}>Détails de l&apos;article</h1>
             <h2 className={styles.secondTitle}>{article.title}</h2>
             <p className={styles.secondContainer}>{article.content}</p>
-            <button className={styles.backButton} onClick={goBack}>Précédent</button>
         </div>
     );
 };
