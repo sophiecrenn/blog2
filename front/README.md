@@ -16,7 +16,7 @@ a. Front-end
 React, React-Router-Dom, Scss.
 
 b. Back-end
-Node.js, Express.js, MongoDB, JWT pour l'authentification, Multer pour l'upload d'images.
+Node.js, Express.js, MongoDB, JWT pour l'authentification, Multer, Nodemailer.
 
 IV.Installation
 a. Prérequis
@@ -41,6 +41,9 @@ Créer un fichier .env dans le dossier backend avec les variables suivantes :
 PORT=3001
 MONGO_URI=mongodb+srv://user:password@cluster.mongodb.net
 JWT_SECRET=supersecretkey
+EMAIL_USER=email@mail.fr
+EMAIL_PASS=supermotdepasse
+ADMIN_EMAIL=email@mail.fr
 
 e. Lancer l'application
 1. Backend

@@ -25,6 +25,7 @@ const AdminConnexion = () => {
             });
 
             if (response.ok) {
+                console.log( await response.json)
                 const loggedUser = await response.json();
                 // Le setUser vient du context qui va permettre d'accéder aux infos de l'utilisateur partout dans le projet
                 setUser(loggedUser);

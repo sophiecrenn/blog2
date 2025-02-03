@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config/env';
+import styles from '../assets/styles/blogUpdate.module.scss';
+
 const BlogUpdate = () => {
     const { id } = useParams();
     const [article, setArticle] = useState({});
@@ -22,7 +24,7 @@ const BlogUpdate = () => {
         } catch (err) {
             setMessage(err.message);
         }
-    }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,35 +46,37 @@ const BlogUpdate = () => {
         } catch (err) {
             setMessage(err.message);
         }
+    };
+
+    // Affichage pendant le chargement
+    if (!article.title) {
+        return <p>Chargement de l&apos;article...</p>;
     }
 
     return (
-        <div>
-            <h1>Mise à jour de l&apos;article {id}</h1>
+        <div className={styles.blogUpdateContainer}>
+            <h1 className={styles.title}>
+                Mise à jour de l&apos;article {article.title ? `"${article.title}"` : ''}
+            </h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     Titre
-                    <input type="text" value={article.title} onChange={(event) => setArticle({ ...article, title: event.target.value })} />
-                </label>
-                <br />
-                <label>
-                    Résumé
-                    <textarea value={article.summary} onChange={(event) => setArticle({ ...article, summary: event.target.value })} />
+                    <input type="text" value={article.title || ''} onChange={(event) => setArticle({ ...article, title: event.target.value })} />
                 </label>
                 <br />
                 <label>
                     Auteur
-                    <input type="text" value={article.author} onChange={(event) => setArticle({ ...article, author: event.target.value })} />
+                    <input type="text" value={article.author || ''} onChange={(event) => setArticle({ ...article, author: event.target.value })} />
                 </label>
                 <br />
                 <label>
                     Contenu
-                    <textarea value={article.content} onChange={(event) => setArticle({ ...article, content: event.target.value })} />
+                    <textarea value={article.content || ''} onChange={(event) => setArticle({ ...article, content: event.target.value })} />
                 </label>
                 <br />
                 <label>
                     Catégorie
-                    <input type="text" value={article.category} onChange={(event) => setArticle({ ...article, category: event.target.value })} />
+                    <input type="text" value={article.category || ''} onChange={(event) => setArticle({ ...article, category: event.target.value })} />
                 </label>
                 <br />
                 <button type="submit">Mettre à jour</button>
@@ -80,6 +84,6 @@ const BlogUpdate = () => {
             {message && <p>{message}</p>}
         </div>
     );
-}
+};
 
 export default BlogUpdate;

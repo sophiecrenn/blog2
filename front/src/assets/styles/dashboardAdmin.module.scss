@@ -18,14 +18,17 @@
     }
 
     .dashboardTitles {
-        border: 5px solid $forth-color;
         font-size: 20px;
     }
 
     .dashboardSecondTitles {
-        border: 5px solid $third-color;
         background-color: $third-color;
         font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .create{
+        margin:30px 0 50px 0;;
     }
 
     .create a {
@@ -36,6 +39,7 @@
         cursor: pointer;
         text-decoration: none;
         font-size: 15px;
+        border-radius: 5px;
     }
 
     ul {
@@ -51,11 +55,12 @@
     }
 
     button {
+        font-size:10px;
         color: $white-color;
         cursor: pointer;
         background-color: $third-color;
-        border-radius: 5px;
-        margin: 10px;
+        border-radius: 20px;
+        padding:10px;
     }
 
     .dashboardLogOut {
@@ -67,8 +72,8 @@
         button {
             color: $third-color;
             cursor: pointer;
-            background-color: $forth-color;
-            border-radius: 5px;
+            background-color: $white-color;
+            border-radius: 30px;
         }
     }
 }
@@ -96,8 +101,8 @@
         }
 
         button {
-            padding: 12px;
-            font-size: 1rem;
+            padding: 10px;
+            font-size: 10px;
         }
     }
 }
@@ -105,14 +110,12 @@
 // Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
 @media (min-width: 1024px) {
     .dashboardAdmin {
-        flex-direction: row;
         justify-content: space-between;
         padding: 30px;
 
         .dashboardTitles,
         .dashboardSecondTitles {
-            font-size: 1.5rem;
-            padding: 20px;
+            font-size: 25px;
         }
 
         .create a {
@@ -121,12 +124,12 @@
         }
 
         ul li a {
-            font-size: 1.2rem;
+            font-size: 20px;
         }
 
         button {
-            padding: 15px;
-            font-size: 1.2rem;
+            font-size: 15px;
+            margin:10px;
         }
     }
 }

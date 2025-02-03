@@ -1,0 +1,49 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.blogUpdateContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px; // Espacement pour les petits écrans
+
+    .title{
+        color: #640088;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px; // Limite la largeur du formulaire
+        padding: 20px;
+        background-color: $white-color;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color:$first-title-color;
+    
+        div {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+    
+        input,
+        textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid $border-color;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+}

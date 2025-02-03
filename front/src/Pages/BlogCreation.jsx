@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { API_URL } from '../config/env';
+import styles from '../assets/styles/blogCreation.module.scss'
 const BlogCreation = () => {
   const [creation, setCreation] = useState({});
   const [message, setMessage] = useState('');
@@ -19,8 +20,8 @@ const BlogCreation = () => {
     console.log(data);
   }
   return (
-    <div>
-      <h1>Creation</h1>
+    <div className={styles.dashboardCreation}>
+      <h1 className={styles.title}>Formulaire de création d'un article</h1>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
         <label>
