@@ -11,6 +11,10 @@
     gap: 20px;
     padding: 10px; // Espacement pour les petits écrans
 
+    .connectTitle{
+        color: $white-color;
+    }
+
     form {
         display: flex;
         flex-direction: column;
@@ -21,6 +25,7 @@
         background-color: $white-color;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color:$first-title-color;
 
         div {
             display: flex;
@@ -41,25 +46,25 @@
             width: 100%;
             box-sizing: border-box;
         }
+    }
+    
+    button {
+        padding: 5px 5px;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s ease;
 
-        button {
-            padding: 5px 5px;
-            background-color: $primary-color;
-            color: $secondary-color;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.3s ease;
+        &:hover {
+            background-color: $secondary-color;
+        }
 
-            &:hover {
-                background-color: $secondary-color;
-            }
-
-            &:disabled {
-                background-color: $button-disabled-color;
-                cursor: not-allowed;
-            }
+        &:disabled {
+            background-color: $button-disabled-color;
+            cursor: not-allowed;
         }
     }
 }

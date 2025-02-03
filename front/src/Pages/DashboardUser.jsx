@@ -11,22 +11,37 @@ const DashboardUser = () => {
 
     const { logout } = useContext(AuthContext);
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
-        // Logique pour envoyer le formulaire à l'admin
-        console.log('Nom:', name);
-        console.log('Email:', email);
-        console.log('Message:', message);
-        // Réinitialiser le formulaire
-        setName('');
-        setEmail('');
-        setMessage('');
+        try {
+            const response = await fetch(`${API_URL}/send-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, message }),
+            });
+    
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Message envoyé avec succès !');
+                setName('');
+                setEmail('');
+                setMessage('');
+            } else {
+                alert('Erreur lors de l\'envoi du message.');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue.');
+        }
     };
 
 
     return (
         <div className={styles.dashboardUser}>
-            <h2>Contactez l&apos;Admin</h2>
+            <h2 className={styles.connectTitle}>Contactez l&apos;Administrateur</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Nom:</label>
@@ -59,7 +74,7 @@ const DashboardUser = () => {
                 </div>
                 <button type="submit">Envoyer</button>
             </form>
-            <div><button onClick={logout}>Logout</button></div>
+            <button onClick={logout}>Logout</button>
         </div>
     );
 };

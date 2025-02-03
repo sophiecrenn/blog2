@@ -24,7 +24,7 @@ const CreateAccount = () => {
     };
     return (
         <div className={styles.connexion}>
-            <h1>Create Account</h1>
+            <h1>Création de compte</h1>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <label>
@@ -45,7 +45,7 @@ const CreateAccount = () => {
                     />
                 </label>
                 <br />
-                <button type="submit">Create Account</button>
+                <button type="submit">Créer votre compte</button>
             </form>
         </div>
     );

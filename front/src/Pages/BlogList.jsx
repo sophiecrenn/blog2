@@ -17,7 +17,6 @@ const BlogList = () => {
     const getArticles = async () => {
         const response = await fetch(API_URL + "/api/blogs");
         const data = await response.json();
-        console.log("Données reçues:", data);
         // Trier les articles du plus récent au plus ancien
         const sortedArticles = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setArticles(sortedArticles);

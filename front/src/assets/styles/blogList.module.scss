@@ -25,12 +25,11 @@
 
 .container {
     padding: 10px;
+    display:flex;
 
     .image {
-        width: 100%;
-        height: auto;
+        display:none;
     }
-}
 
 .secondTitle {
     color: $first-title-color;
@@ -49,6 +48,7 @@
     color: $first-title-color;
     text-align: center;
     text-decoration: none;
+}
 }
 
 .pagination {
@@ -79,13 +79,9 @@
     }
 }
 
+
 // Media Query pour les tablettes (écrans de 768px et plus)
 @media (min-width: 768px) {
-    .container {
-        .image {
-            width: 50%;
-        }
-    }
 
     .title {
         padding: 15px;
@@ -112,6 +108,7 @@
     .container {
         .image {
             width: 30%;
+            display:block;
         }
     }
 
