@@ -39,8 +39,8 @@ npm install
 d. Configuration des variables d'environnement
 Créer un fichier .env dans le dossier backend avec les variables suivantes :
 PORT=3001
-MONGO_URI=mongodb+srv://sophiecrennfox:BlackPanther29@soma.13jlq.mongodb.net/tattooblog?retryWrites=true&w=majority&appName=SOMA
-JWT_SECRET=354041960143518183468183
+MONGO_URI=mongodb+srv://user:password@cluster.mongodb.net
+JWT_SECRET=supersecretkey
 
 e. Lancer l'application
 1. Backend
