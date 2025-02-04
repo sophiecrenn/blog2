@@ -46,7 +46,11 @@ function DashboardAdmin() {
   
   const handleDeleteUser = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/api/auth/${id}`); // Suppression de l'utilisateur
+      const response = await axios.delete(`${API_URL}/api/auth/${id}`, {
+        headers : {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        }
+      }); // Suppression de l'utilisateur
       if (response.status === 200 || response.status === 204) {
         setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id)); // Mise à jour avec le nouvel état
       } else {

@@ -25,11 +25,12 @@ const AdminConnexion = () => {
             });
 
             if (response.ok) {
-                console.log( await response.json)
                 const loggedUser = await response.json();
+                console.log(loggedUser)
+                localStorage.setItem('token', loggedUser.token)
                 // Le setUser vient du context qui va permettre d'accéder aux infos de l'utilisateur partout dans le projet
-                setUser(loggedUser);
-                if (loggedUser.admin) {
+                setUser(loggedUser.user);
+                if (loggedUser.user.admin) {
                     return navigate('/dashboardAdmin');
                 }
 
