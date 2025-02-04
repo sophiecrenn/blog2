@@ -4,7 +4,8 @@ const {
     register,
     getUsers,
     getLoggedUser,
-    logout
+    logout,
+    deleteUser
 } = require('../controllers/authController');
 
 const auth = require('../middelware/auth');
@@ -21,5 +22,7 @@ router.get('/', auth, admin, getUsers);
 router.get('/getLoggedUser', auth, getLoggedUser);
 
 router.get('/logout', auth, logout);
+
+router.delete("/:id", [auth, admin], deleteUser);
 
 module.exports = router;

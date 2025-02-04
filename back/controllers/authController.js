@@ -18,7 +18,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email })
         if (!user) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
@@ -27,7 +27,8 @@ const login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('token', token, { httpOnly: true }).json(user);
+        // res.cookie('token', token, { httpOnly: true }).json(user);
+        return res.json({user, token : token})
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' });
@@ -46,10 +47,27 @@ const logout = async (req, res) => {
     res.clearCookie('token').json({ message: 'Déconnexion réussi youpi' });
 }
 
+const deleteUser = async (req, res) => {
+    try {  
+        const { id } = req.params; // Get the user ID from the request parameters
+
+        const user = await User.findByIdAndDelete(id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 module.exports = {
     register,
     login,
     getUsers,
     getLoggedUser,
-    logout
+    logout,
+    deleteUser
 };
