@@ -1,23 +1,33 @@
 import { useState } from 'react';
-import { API_URL } from '../config/env';
+import { API_URL } from '../config/env'; 
 import styles from '../assets/styles/blogCreation.module.scss'
+
+//Page de la création d'article
 const BlogCreation = () => {
+  //initialisation des états pour la création
   const [creation, setCreation] = useState({});
+  //initialisation des états pour le message
   const [message, setMessage] = useState('');
 
+  //fonction d'envoi du formulaire pour la création de l'article
   const handleSubmit = async (e) => {
+    //Evite le rafraichissement de la page
     e.preventDefault();
+    //Création de la requête
     const formData = new FormData(e.target);
+    //Envoi de la requête
     const response = await fetch(API_URL + "/api/blogs", {
+      //Création de la requête en POST (envoi)
       method: "POST",
-      body: formData    //transforme en chaîne de caractère pour l'envoi au back qui ne peut pas recevoir d'objet
+      //Transforme en chaîne de caractère pour l'envoi au back qui ne peut pas recevoir d'objet
+      body: formData    
     })
+    //Traitement de la reponse si l'article est créé
+    alert('Article creé !');
 
-    setMessage('Article creé !');
-
+    //Récupération de l'article
     const data = await response.json();
     setCreation({});
-    console.log(data);
   }
   return (
     <div className={styles.dashboardCreation}>

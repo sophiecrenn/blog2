@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
+// Création du modèle pour les articles
 const ArticleSchema = new Schema({
     title: String,
     summary: String,

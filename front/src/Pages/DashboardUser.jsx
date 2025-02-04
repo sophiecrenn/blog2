@@ -4,35 +4,52 @@ import { AuthContext } from '../Hooks/AuthContext';
 import { API_URL } from '../config/env'
 import styles from '../assets/styles/dashboardUser.module.scss';
 
+// Composant de dashboard utilisateur
 const DashboardUser = () => {
+    // Hook pour gérer le formulaire
     const [name, setName] = useState('');
+    // Hook pour gérer le formulaire
     const [email, setEmail] = useState('');
+    // Hook pour gérer le formulaire
     const [message, setMessage] = useState('');
 
+    // Hook pour naviguer vers la page de connexion
     const { logout } = useContext(AuthContext);
 
+    // Fonction pour soumettre le formulaire
     const handleSubmit =  async (e) => {
+        // Eviter le rafraichissement de la page
         e.preventDefault();
         try {
+            // Création de la requête
             const response = await fetch(`${API_URL}/send-email`, {
+                // Création de la requête en POST
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                // Transforme en chaîne de caractère pour l'envoi au back qui ne peut pas recevoir d'objet
                 body: JSON.stringify({ name, email, message }),
             });
     
+            // Traitement de la reponse
             const data = await response.json();
 
             if (data.success) {
+                // Message de confirmation
                 alert('Message envoyé avec succès !');
+                //Effacer le nom du formulaire après l'envoi 
                 setName('');
+                //Effacer l'email du formulaire après l'envoi 
                 setEmail('');
+                //Effacer le message du formulaire après l'envoi 
                 setMessage('');
             } else {
+                // Message d'erreur
                 alert('Erreur lors de l\'envoi du message.');
             }
         } catch (error) {
+            // Gestion de l'erreur
             console.error('Erreur:', error);
             alert('Une erreur est survenue.');
         }
@@ -41,7 +58,7 @@ const DashboardUser = () => {
 
     return (
         <div className={styles.dashboardUser}>
-            <h2 className={styles.connectTitle}>Contactez l&apos;Administrateur</h2>
+            <h1 className={styles.connectTitle}>Contactez l&apos;Administrateur</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Nom:</label>

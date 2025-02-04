@@ -1,5 +1,6 @@
 @import '_variables.scss';
 
+//Barre de navigation
 .nav {
     display: flex;
     flex-direction: column; 
@@ -11,11 +12,13 @@
     font-size: 20px;
     text-align: center;
 
+    //Gestion du logo
     .logo {
         width: 100px; 
         height: 100px;
     }
 
+    //Gestion du slogan
     .secondTitle {
         width:50%;
         height:auto;

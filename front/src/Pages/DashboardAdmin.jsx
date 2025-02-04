@@ -6,53 +6,90 @@ import axios from 'axios';
 import { API_URL } from '../config/env';
 import styles from '../assets/styles/dashboardAdmin.module.scss';
 
+// Gestion du dashboard de l'administrateur
 function DashboardAdmin() {
-  const [articles, setArticles] = useState([]); // État pour les articles
-  const [users, setUsers] = useState([]); // État pour les utilisateurs
-  const [showArticles, setShowArticles] = useState(false); // État pour la visibilité des articles
-  const [showUsers, setShowUsers] = useState(false); // État pour la visibilité des utilisateurs
-  const { logout } = useContext(AuthContext); // Hook pour le logout
+  //Hook pour les articles
+  const [articles, setArticles] = useState([]);
+  //Hook pour les utilisateurs
+  const [users, setUsers] = useState([]);
+  //Hook pour l'affichage des articles dans le dashboard
+  const [showArticles, setShowArticles] = useState(false);
+  //Hook pour l'affichage des utilisateurs dans le dashboard
+  const [showUsers, setShowUsers] = useState(false);
+  //Hook pour le logout
+  const { logout } = useContext(AuthContext); 
 
+  // Fonction pour obtenir la liste des articles et des utilisateurs
   useEffect(() => {
+    // Fonction pour obtenir la liste des utilisateurs
     const getUsers = async () => {
-      const response = await axios.get(API_URL + '/api/auth', { withCredentials: true });
+      // Récupérer la liste des utilisateurs
+      const response = await axios.get(API_URL + '/api/auth',
+        // Création de la requête 
+        {        headers : {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        }}
+        ,{ withCredentials: true });
+        // Traitement de la reponse si la liste des utilisateurs est introuvable
       setUsers(response.data);
     };
 
+    // Fonction pour obtenir la liste des articles
     const getArticles = async () => {
-      const response = await axios.get(API_URL + '/api/blogs');
+      // Récupérer la liste des articles
+      const response = await axios.get(API_URL + '/api/blogs',
+        // Création de la requête
+      {        headers : {
+        "Authorization" : `Bearer ${localStorage.getItem('token')}`
+      }})
+      // Traitement de la reponse si la liste des articles est introuvable
       setArticles(response.data);
     };
 
+    // Appel des fonctions de récupération des utilisateurs et des articles
     getUsers();
     getArticles();
   }, []);
 
+  // Fonction pour supprimer un article
   const handleDeleteArticle = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/api/blogs/${id}`, {
-        withCredentials: true,  // Assurez-vous d'envoyer les cookies avec la requête
+      // Suppression de l'article
+      const response = await axios.delete(`${API_URL}/api/blogs/${id}`, 
+        {        headers : {
+          "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        }},{
+        withCredentials: true,
       });
-  
+
+      // Traitement de la réponse
       if (response.status === 200 || response.status === 204) {
-        setArticles(articles.filter((article) => article._id !== id)); // Supprime l'article du state local
+        // Suppression de l'article
+        setArticles(articles.filter((article) => article._id !== id));
       } else {
+        // Gestion de l'erreur
         console.error('Erreur lors de la suppression de l\'article');
       }
     } catch (error) {
+      // Gestion de l'erreur
       console.error('Erreur lors de la suppression de l\'article:', error);
     }
   };
   
+  // Fonction pour supprimer un utilisateur
   const handleDeleteUser = async (id) => {
     try {
+      // Suppression de l'utilisateur
       const response = await axios.delete(`${API_URL}/api/auth/${id}`, {
-        headers : {
-          "Authorization" : `Bearer ${localStorage.getItem('token')}`
-        }
-      }); // Suppression de l'utilisateur
+        // Création de la requête en DELETE
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      // Traitement de la réponse
       if (response.status === 200 || response.status === 204) {
-        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id)); // Mise à jour avec le nouvel état
+        // Suppression de l'utilisateur
+        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
       } else {
         console.error("Erreur lors de la suppression de l'utilisateur");
       }
@@ -61,7 +98,7 @@ function DashboardAdmin() {
     }
   };
 
-  // Fonctions pour alterner la visibilité
+  // Fonctions pour alterner la visibilité des listes des utilisateurs et des articles (toggle)
   const toggleArticles = () => setShowArticles(!showArticles);
   const toggleUsers = () => setShowUsers(!showUsers);
 
@@ -109,6 +146,10 @@ function DashboardAdmin() {
 }
 
 export default DashboardAdmin;
+
+
+
+
 
 
 

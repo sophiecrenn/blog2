@@ -1,4 +1,6 @@
-const dotenv = require("dotenv")
+// Import des modules
+// Permet de lire les variables d'environnement
+const dotenv = require("dotenv") 
 dotenv.config()
 const PORT = process.env.PORT || 3001;
 const express = require('express');
@@ -18,17 +20,18 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 // Middlewares
 app.use(cors({
-    // Authorise les appels depuis l'url de Vite (react)
+    // Authorise les appels depuis l'url de Vite
     origin: "http://localhost:5173",
-    // Authorise les Cookies dans les requests
+    // Authorise les Cookies dans les requêtes
     credentials: true
 }));
-// Permet de d'avoir req.cookie dans nos middlewares / controllers
+// Permet de lire les cookies
 app.use(cookieParser());
-// Permet de decoder le json envoyé depuis le front
+// Permet de lire le corps de la requête
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Permet de lire les fichiers statiques
 app.use(express.static('public'));
 
 

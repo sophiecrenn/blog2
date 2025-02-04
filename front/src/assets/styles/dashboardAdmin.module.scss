@@ -60,7 +60,7 @@
         cursor: pointer;
         background-color: $third-color;
         border-radius: 20px;
-        padding:10px;
+        margin:10px;
     }
 
     .dashboardLogOut {
@@ -99,11 +99,6 @@
         ul li a {
             font-size: 1rem;
         }
-
-        button {
-            padding: 10px;
-            font-size: 10px;
-        }
     }
 }
 
@@ -129,7 +124,6 @@
 
         button {
             font-size: 15px;
-            margin:10px;
         }
     }
 }
