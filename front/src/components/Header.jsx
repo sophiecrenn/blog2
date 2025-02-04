@@ -1,37 +1,56 @@
-import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
 import styles from '../assets/styles/header.module.scss';
 import Logo from '../assets/Blog.svg';
-import secondTitle from "../assets/images/secondTitle.png"
+import Loupe from "../assets/images/loupe.png";
+import secondTitle from "../assets/images/secondTitle.png";
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const [searchTerm, setSearchTerm] = useState(""); // État pour la recherche
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/search?query=${searchTerm}`);
+    }
+  };
 
   return (
     <nav className={styles.nav}>
       <Link to="/">
         <img src={Logo} alt="logo" className={styles.logo} />
       </Link>
-      <Link to="/"><img src={secondTitle} alt="title" className={styles.secondTitle} />
+      <Link to="/">
+        <img src={secondTitle} alt="title" className={styles.secondTitle} />
       </Link>
       <h1>Tattoo blog: entre encre et passion</h1>
+      <form onSubmit={handleSearch} className={styles.searchForm}>
+        <input
+          type="text"
+          placeholder="Rechercher un article..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+        <button type="submit" className={styles.searchButton}>
+        <img src={Loupe} alt="loupe" className={styles.loupe} />
+        </button>
+      </form>
       <ul>
         <li>
           <Link to="/">Accueil</Link>
         </li>
-        {!user || user === undefined ? (
-          <>
-            <li>
-              <Link to="/login">Connexion</Link>
-            </li>
-          </>
+        {!user ? (
+          <li>
+            <Link to="/login">Connexion</Link>
+          </li>
         ) : (
-          <>
-            <li>
-              <Link to={user.admin ? "/dashboardAdmin" : "/dashboardUser"}>Dashboard</Link>
-            </li>
-          </>
+          <li>
+            <Link to={user.admin ? "/dashboardAdmin" : "/dashboardUser"}>Dashboard</Link>
+          </li>
         )}
       </ul>
     </nav>
@@ -40,11 +59,3 @@ const Header = () => {
 
 export default Header;
 
-
-/*
-            <li>
-              <Link to="/account">Création d&apos;un compte</Link>
-            </li>
-<li>
-<Link to="/blog">Blog</Link>
-</li>*/

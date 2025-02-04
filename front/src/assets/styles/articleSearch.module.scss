@@ -1,0 +1,39 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+.researchContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin:50px;
+    justify-content: center;
+    color:$secondary-color;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+
+    button {
+        color: white;
+        border: none;
+        padding: 10px;
+        margin: 10px;
+        cursor: pointer;
+        list-style: none;
+        text-decoration: none;
+        background-color: $primary-color;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $secondary-color;
+        }
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    }
+}

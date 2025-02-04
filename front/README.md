@@ -74,3 +74,5 @@ Mettre à jour un article : {API_URL}/api/blogs/${id}
 5. DELETE
 Supprimer un article : {API_URL}/api/blogs/${id}
 
+**Icone de la loupe téléchargée depuis icones8
+

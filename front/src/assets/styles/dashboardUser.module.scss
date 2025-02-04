@@ -9,7 +9,7 @@
     height: 100vh;
     flex-direction: column;
     gap: 20px;
-    padding: 10px; // Espacement pour les petits écrans
+    padding: 10px;
 
     .connectTitle{
         color: $secondary-color;
@@ -20,7 +20,7 @@
         flex-direction: column;
         gap: 15px;
         width: 100%;
-        max-width: 400px; // Limite la largeur du formulaire
+        max-width: 400px;
         padding: 20px;
         background-color: $white-color;
         border-radius: 10px;
@@ -72,14 +72,14 @@
 // Media Query pour les tablettes (écrans de 768px et plus)
 @media (min-width: 768px) {
     .dashboardUser {
-        padding: 20px; // Plus d'espace autour sur tablette
+        padding: 20px; 
 
         form {
-            width: 80%; // Augmenter la largeur du formulaire
+            width: 80%; 
 
             button {
-                font-size: 18px; // Agrandir le texte du bouton
-                padding: 12px 18px; // Agrandir le bouton
+                font-size: 18px; 
+                padding: 12px 18px;
             }
         }
     }
@@ -88,14 +88,14 @@
 // Media Query pour les ordinateurs de bureau (écrans de 1024px et plus)
 @media (min-width: 1024px) {
     .dashboardUser {
-        padding: 40px; // Ajouter un padding plus large sur desktop
+        padding: 40px;
 
         form {
-            width: 60%; // Formulaire plus large
+            width: 60%; 
 
             button {
-                font-size: 20px; // Agrandir le texte pour grand écran
-                padding: 15px 20px; // Agrandir les boutons
+                font-size: 20px; 
+                padding: 15px 20px; 
             }
         }
     }

@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import Connexion from "./Pages/Connexion";
+import SearchResults from './Pages/ArticleSearch';
 import BlogCreation from "./Pages/BlogCreation";
 import BlogList from "./Pages/BlogList";
 import BlogDetail from "./Pages/BlogDetail";
@@ -25,6 +26,7 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<BlogList />} />
+              <Route path="/search" element={<SearchResults />} />
               <Route path="/blog/:id" element={<BlogDetail />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/blog" element={<BlogList />} />
