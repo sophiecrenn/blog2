@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 // Middlewares
 app.use(cors({
     // Authorise les appels depuis l'url de Vite
-    origin: "blog2-913e0mgd2-sophiecrenns-projects.vercel.app/",
+    origin: "https://blog2-913e0mgd2-sophiecrenns-projects.vercel.app/",
     // Authorise les Cookies dans les requêtes
     credentials: true
 }));
