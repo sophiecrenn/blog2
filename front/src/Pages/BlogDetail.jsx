@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config/env';
-import styles from '../assets/styles/BlogDetail.module.scss';
+import styles from '../assets/styles/blogDetail.module.scss';
 
 // Composant pour afficher les détails de l'article
 const BlogDetail = () => {
