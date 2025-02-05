@@ -3,8 +3,11 @@ import { AuthContext } from './AuthContext';
 import { useNavigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// Gestion de la protection des routes
 const ProtectedRoute = ({ adminOnly = false }) => {
+    // Gestion de l'authentification
     const { user } = useContext(AuthContext);
+    // Gestion de la navigation
     const navigate = useNavigate();
 
     useEffect(() => {

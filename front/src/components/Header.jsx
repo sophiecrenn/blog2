@@ -7,13 +7,19 @@ import Loupe from "../assets/images/loupe.png";
 import secondTitle from "../assets/images/secondTitle.png";
 
 const Header = () => {
+  // Gestion de l'authentification
   const { user } = useContext(AuthContext);
-  const [searchTerm, setSearchTerm] = useState(""); // État pour la recherche
+  // Gestion de la recherche
+  const [searchTerm, setSearchTerm] = useState("");
+  // Gestion de la navigation
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
+    // Eviter le rafraichissement de la page
     e.preventDefault();
+    // Si le terme de recherche n'est pas vide, on redirige vers la page de recherche
     if (searchTerm.trim() !== "") {
+      // Redirection vers la page de recherche
       navigate(`/search?query=${searchTerm}`);
     }
   };

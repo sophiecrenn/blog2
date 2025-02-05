@@ -62,7 +62,7 @@ const getLoggedUser = async (req, res) => {
 // Désconnexion de l'utilisateur
 const logout = async (req, res) => {
     // Désconnexion de l'utilisateur et suppression du cookie
-    res.clearCookie('token').json({ message: 'Déconnexion réussi youpi' });
+    res.clearCookie('token').json({ message: 'Successfully logged out' });
 }
 
 // Suppression de l'utilisateur

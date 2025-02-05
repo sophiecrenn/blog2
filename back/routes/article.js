@@ -7,7 +7,7 @@ const {
     getAll, 
     getOne, 
     updateOne, 
-    deleteArticle 
+    deleteArticle,
 } = require('../controllers/articleController');
 
 const auth = require('../middelware/auth');
