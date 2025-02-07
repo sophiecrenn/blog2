@@ -1,1 +1,5 @@
-export const RECAPTCHA_KEY = import.meta.env.VITE_APP_RECAPTCHA_KEY
+require('dotenv').config();
+
+module.exports = {
+    RECAPTCHA_KEY: process.env.VITE_APP_RECAPTCHA_KEY
+};
