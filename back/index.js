@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 // Middlewares
 app.use(cors({
     // Authorise les appels depuis l'url de Vite
-origin: "https://tattoo-blog.vercel.app/",
+origin: "https://tattoo-blog.vercel.app",
     // Authorise les Cookies dans les requêtes
     credentials: true
 }));
