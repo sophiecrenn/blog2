@@ -3,8 +3,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
 import { API_URL } from '../config/env'
 import styles from '../assets/styles/dashboardUser.module.scss';
-import { useRef } from 'react';
-import RECAPCHA from 'react-google-recaptcha';
+
 
 // Composant de dashboard utilisateur
 const DashboardUser = () => {
@@ -18,17 +17,10 @@ const DashboardUser = () => {
     // Hook pour naviguer vers la page de connexion
     const { logout } = useContext(AuthContext);
 
-    const recaptchaRef = useRef(null);
-
     // Fonction pour soumettre le formulaire
     const handleSubmit =  async (e) => {
         // Eviter le rafraichissement de la page
         e.preventDefault();
-        const token = await recaptchaRef.current.getValue();
-        if (!token) {
-            alert("Please complete the reCAPTCHA!");
-            return;
-          }
         try {
             // Création de la requête
             const response = await fetch(`${API_URL}/send-email`, {
@@ -40,15 +32,6 @@ const DashboardUser = () => {
                 // Transforme en chaîne de caractère pour l'envoi au back qui ne peut pas recevoir d'objet
                 body: JSON.stringify({ name, email, message }),
             });
-
-            const result = await response.json();
-
-             if (result.success) {
-                alert("reCAPTCHA verification successful!");
-                // Proceed with your form submission
-            } else {
-                alert("reCAPTCHA verification failed!");
-    }
     
             // Traitement de la reponse
             const data = await response.json();
@@ -72,6 +55,7 @@ const DashboardUser = () => {
             alert('Une erreur est survenue.');
         }
     };
+
 
     return (
         <div className={styles.dashboardUser}>
@@ -107,10 +91,6 @@ const DashboardUser = () => {
                     ></textarea>
                 </div>
                 <button type="submit">Envoyer</button>
-                <RECAPCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.CAPTCHA_KEY}
-                />
             </form>
             <button onClick={logout}>Logout</button>
         </div>
