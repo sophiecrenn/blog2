@@ -39,7 +39,7 @@ app.use(express.static('public'));
 // Utilistation des routes
 app.use("/api/blogs", articleRoutes);
 app.use("/api/auth", authRoute);
-app.use("/api", recaptchaRoutes);
+app.use("/api/recaptcha", recaptchaRoutes);
 
 // Lancement de l'api
 app.listen(PORT, () => {
