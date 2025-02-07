@@ -86,7 +86,7 @@ const DashboardUser = () => {
                 </div>
                 
                 <ReCAPTCHA
-                    sitekey={process.env.CAPCHA_KEY} 
+                    sitekey={process.env.VITE_APP_CAPCHA_KEY} 
                     onChange={handleCaptchaChange}
                 />
 
