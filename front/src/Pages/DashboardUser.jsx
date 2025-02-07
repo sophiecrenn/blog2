@@ -2,59 +2,54 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
 import { API_URL } from '../config/env'
+import ReCAPTCHA from 'react-google-recaptcha';
 import styles from '../assets/styles/dashboardUser.module.scss';
 
-// Composant de dashboard utilisateur
 const DashboardUser = () => {
-    // Hook pour gérer le formulaire
     const [name, setName] = useState('');
-    // Hook pour gérer le formulaire
     const [email, setEmail] = useState('');
-    // Hook pour gérer le formulaire
     const [message, setMessage] = useState('');
+    const [captchaValue, setCaptchaValue] = useState(null);  // Pour stocker la valeur du captcha
 
-    // Hook pour naviguer vers la page de connexion
     const { logout } = useContext(AuthContext);
 
-    // Fonction pour soumettre le formulaire
-    const handleSubmit =  async (e) => {
-        // Eviter le rafraichissement de la page
+    // Fonction pour gérer la réponse du CAPTCHA
+    const handleCaptchaChange = (value) => {
+        setCaptchaValue(value);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!captchaValue) {
+            alert('Veuillez vérifier que vous n\'êtes pas un robot.');
+            return;
+        }
+
         try {
-            // Création de la requête
             const response = await fetch(`${API_URL}/send-email`, {
-                // Création de la requête en POST
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // Transforme en chaîne de caractère pour l'envoi au back qui ne peut pas recevoir d'objet
-                body: JSON.stringify({ name, email, message }),
+                body: JSON.stringify({ name, email, message, captcha: captchaValue }),  // Ajouter la réponse du captcha
             });
-    
-            // Traitement de la reponse
+
             const data = await response.json();
 
             if (data.success) {
-                // Message de confirmation
                 alert('Message envoyé avec succès !');
-                //Effacer le nom du formulaire après l'envoi 
                 setName('');
-                //Effacer l'email du formulaire après l'envoi 
                 setEmail('');
-                //Effacer le message du formulaire après l'envoi 
                 setMessage('');
             } else {
-                // Message d'erreur
                 alert('Erreur lors de l\'envoi du message.');
             }
         } catch (error) {
-            // Gestion de l'erreur
             console.error('Erreur:', error);
             alert('Une erreur est survenue.');
         }
     };
-
 
     return (
         <div className={styles.dashboardUser}>
@@ -89,6 +84,12 @@ const DashboardUser = () => {
                         required
                     ></textarea>
                 </div>
+                
+                <ReCAPTCHA
+                    sitekey={process.env.CAPCHA_KEY}
+                    onChange={handleCaptchaChange}
+                />
+
                 <button type="submit">Envoyer</button>
             </form>
             <button onClick={logout}>Logout</button>
