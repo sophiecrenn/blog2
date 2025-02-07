@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../Hooks/AuthContext';
 import { API_URL } from '../config/env'
 import styles from '../assets/styles/dashboardUser.module.scss';
+import { useRef } from 'react';
 import RECAPCHA from 'react-google-recaptcha';
 
 // Composant de dashboard utilisateur
