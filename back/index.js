@@ -3,6 +3,7 @@
 const dotenv = require("dotenv") 
 dotenv.config()
 const PORT = process.env.PORT || 3001;
+const axios = require("axios");
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -38,6 +39,7 @@ app.use(express.static('public'));
 // Utilistation des routes
 app.use("/api/blogs", articleRoutes);
 app.use("/api/auth", authRoute);
+app.use("/api", recaptchaRoutes);
 
 // Lancement de l'api
 app.listen(PORT, () => {
