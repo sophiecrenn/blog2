@@ -109,7 +109,7 @@ const DashboardUser = () => {
                 <button type="submit">Envoyer</button>
                 <RECAPCHA
                     ref={recaptchaRef}
-                    sitekey={process.env.VITE_APP_CAPCHA_KEY}
+                    sitekey={process.env.CAPTCHA_KEY}
                 />
             </form>
             <button onClick={logout}>Logout</button>
