@@ -8,7 +8,6 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const recaptchaRoutes = require("./routes/recaptchaRoutes");
 
 // Import des routes
 const articleRoutes = require("./routes/article");
@@ -39,7 +38,6 @@ app.use(express.static('public'));
 // Utilistation des routes
 app.use("/api/blogs", articleRoutes);
 app.use("/api/auth", authRoute);
-app.use("/api/recaptcha", recaptchaRoutes);
 
 // Lancement de l'api
 app.listen(PORT, () => {
