@@ -3,12 +3,12 @@
 const dotenv = require("dotenv") 
 dotenv.config()
 const PORT = process.env.PORT || 3001;
-const axios = require("axios");
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+const recaptchaRoutes = require("./routes/recaptchaRoutes");
 
 // Import des routes
 const articleRoutes = require("./routes/article");
