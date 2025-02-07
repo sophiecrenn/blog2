@@ -1,5 +1,5 @@
 require('dotenv').config();
 
 module.exports = {
-    RECAPTCHA_KEY: process.env.VITE_APP_RECAPTCHA_KEY
+    RECAPTCHA_KEY: process.env.CAPCHA_KEY
 };
