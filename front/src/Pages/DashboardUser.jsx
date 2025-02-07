@@ -86,7 +86,7 @@ const DashboardUser = () => {
                 </div>
                 
                 <ReCAPTCHA
-                    sitekey={process.env.CAPCHA_KEY}
+                    sitekey={process.env.REACT_APP_RECAPCHA_KEY}  // Remplacez par votre site key de Google reCAPTCHA
                     onChange={handleCaptchaChange}
                 />
 
